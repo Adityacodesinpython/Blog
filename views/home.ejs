@@ -1,0 +1,23 @@
+  <%- include("partials/navbar.ejs") %>
+  <div id="content">
+      <div class="container my-3">
+          <ul class="p-5">
+            <% if(data.length!=0) {%>
+              
+              <% data.forEach((i) => { %>
+                <div class="p-5 mb-5 border bg-body-tertiary rounded-3">
+                    <h1 class="text-body-emphasis"><%= i.heading %></h1>
+                    <p><%= i.body.substring(0, 100) + "..."%></p>
+                    <a class="btn btn-primary px-5" href="/posts/<%= i.heading %>">Go to Blog</a>
+                  </div>
+            <%  }); %>
+            <% } else {%>
+              <div class="p-5 mb-5 border bg-body-tertiary rounded-3">
+                <h2 class="text-body-emphasis">No Blogs Posted</h2>
+                <p>. . . yet :)</p>
+              </div>
+            <% } %>
+          </ul>
+      </div>
+  </div>  
+  <%- include("partials/footer.ejs") %>

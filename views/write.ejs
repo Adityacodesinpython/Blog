@@ -2,8 +2,8 @@
 
 
 <div id="content">
-    <form class="container my-5" action=<%= type %> method="POST">
-        <ul class="p-5 border">
+    <form class="container my-5 p-5 bg-body-tertiary rounded-3 border" action="/write" method="POST">
+        <!-- <ul class="p-5 border">
             <li>
                 <textarea class="border" name="blog-title" id="blog-title" cols="30" rows="1"  placeholder="Enter title" required></textarea>
             </li>
@@ -13,7 +13,16 @@
             <li>
                 <button class="btn btn-primary px-5" type="submit">Submit Blog</button>
             </li>
-        </ul>
+        </ul> -->
+            <div class="mb-3">
+                <label for="blog-title text-body-emphasis" class="form-label">Title:</label>
+                <input class="form-control" name="blog-title" id="blog-title" placeholder="Enter title" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label text-body-emphasis">Text:</label>
+                <textarea class="col-lg-12 mb-4 form-control" name="blog-post" id="blog-post" cols="30" rows="10" placeholder="Enter text" required></textarea>
+            </div>
+            <button class="btn btn-primary px-5" type="submit">Submit Blog</button>
     </form>
 </div> 
 
