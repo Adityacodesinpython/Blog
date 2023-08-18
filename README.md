@@ -9,8 +9,8 @@ An attractive blogging website with cool features
 - MongoDB, Mongoose.
 
 # Recent commit:
-- ability to view blogs in a seperate page.
 - Added backend with MongoDB.
+- Ability to view blogs in a seperate page.
 
 # Acknowledgement
 - I'd like to thank my humble instructer Dr. Angela Yu for her passionate guidance throughout this project.
