@@ -2,23 +2,35 @@ import express from "express"
 import ejs from "ejs"
 import bodyParser from "body-parser"
 import _ from "lodash"
+import mongoose, { mongo } from "mongoose"
 
 const app = express();
 const port = 3000;
 
-// let headings = [];
-// let bodys = [];
+mongoose.connect("mongodb://127.0.0.1:27017/blogDB",  {useNewUrlParser: true});
 
-let data = []
+const postSchema = new mongoose.Schema({
+    title: String,
+    content: String
+});
+
+const Post = mongoose.model("post", postSchema);
+
+
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended:true }));
 
 app.get("/", (req, res) => {
-    res.render("home.ejs", {
-        // post_heading: headings,
-        // post_body: bodys,
-        data:data,
+
+    Post.find()
+    .then((posts)=>{
+        res.render("home.ejs", {
+            data:posts.reverse(),
+        });
+        console.log("Success");
+    }).catch( (err) =>{
+        console.log(err);
     });
 })
 
@@ -31,30 +43,33 @@ app.post("/write", (req, res) => {
     
     let post_heading = req.body["blog-title"];
     let post_body = req.body["blog-post"];
-    data.push({
-        heading: post_heading,
-        body: post_body
-    })
-    data = data.reverse();
-    // headings.push(post_heading);
-    // bodys.push(post_body);
 
-    res.redirect("/");
-
+    const post = new Post({
+        title: post_heading,
+        content: post_body
+    });
+    post.save()
+    .then(()=>{
+        console.log("Data added");
+        res.redirect("/");
+    }).catch((err)=>{
+        console.log(err);
+    });
 })
 
-app.get("/posts/:postName", (req, res)=>{
-    data.forEach(i => {
-        if(_.lowerCase(i.heading) == _.lowerCase(req.params.postName)){
-            // console.log("Match found");
-            res.render("post.ejs", {
-                data : {
-                    heading: i.heading,
-                    body: i.body,
-                },
-            })
-        }
-    })
+app.get("/posts/:postId", (req, res)=>{
+
+    Post.findOne({_id: req.params.postId})
+    .then((foundItem)=>{
+        console.log("Found item");
+
+        res.render("post.ejs", {
+            data : foundItem,
+        });
+
+    }).catch((err)=>{
+        console.log(err);
+    });
 });
 
 app.get("/about", (req, res)=>{

@@ -6,9 +6,15 @@
               
               <% data.forEach((i) => { %>
                 <div class="p-5 mb-5 border bg-body-tertiary rounded-3">
-                    <h1 class="text-body-emphasis"><%= i.heading %></h1>
-                    <p><%= i.body.substring(0, 100) + "..."%></p>
-                    <a class="btn btn-primary px-5" href="/posts/<%= i.heading %>">Go to Blog</a>
+                    <h1 class="text-body-emphasis"><%= i.title %></h1>
+                    
+                    <% if (i.content.length >= 100){ %>
+                      <p><%= i.content.substring(0, 100) + "..."%></p>
+                    <% } else { %>
+                      <p><%= i.content %></p>
+                    <% } %>  
+                    <a class="btn btn-primary px-5" href="/posts/<%= i._id %>">Go to Blog</a>
+                    
                   </div>
             <%  }); %>
             <% } else {%>
