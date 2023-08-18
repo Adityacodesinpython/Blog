@@ -7,7 +7,7 @@ import mongoose, { mongo } from "mongoose"
 const app = express();
 const port = 3000;
 
-mongoose.connect("mongodb://127.0.0.1:27017/blogDB",  {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://admin-aditya:test123@blogcluster.w5pe6rb.mongodb.net/blogDB",  {useNewUrlParser: true});
 
 const postSchema = new mongoose.Schema({
     title: String,
@@ -16,10 +16,21 @@ const postSchema = new mongoose.Schema({
 
 const Post = mongoose.model("post", postSchema);
 
+const userSchema = new mongoose.Schema({
+    username: String,
+    password: String,
+    posts:[postSchema]
+});
+const User = mongoose.model("user", userSchema);
+
 
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended:true }));
+
+app.get("/login", (req, res)=>{
+    res.render("login.ejs");
+})
 
 app.get("/", (req, res) => {
 
