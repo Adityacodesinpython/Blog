@@ -11,12 +11,12 @@ An attractive blogging website with cool features
 # Recent commit:
 - Added backend with MongoDB.
 - Ability to view blogs in a seperate page.
+- Deletion of a chosen blog.
 
 # Acknowledgement
 - I'd like to thank my humble instructer Dr. Angela Yu for her passionate guidance throughout this project.
 
 # Upcoming features:
-- Deletion of a chosen blog.
 - Updation within homepage facility.
 - login/signup facility
   
