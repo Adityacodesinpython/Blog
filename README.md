@@ -1,5 +1,5 @@
 # Blog
-An attractive blogging website with cool features
+A fully functional & attractive blogging website with cool features
 
 # Frameworks used:
 - NodeJS
