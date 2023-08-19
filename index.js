@@ -8,6 +8,7 @@ const app = express();
 const port = 3000;
 
 mongoose.connect("mongodb+srv://admin-aditya:test123@blogcluster.w5pe6rb.mongodb.net/blogDB",  {useNewUrlParser: true});
+// mongoose.connect("mongodb://127.0.0.1:27017/blogDB",  {useNewUrlParser: true});
 
 const postSchema = new mongoose.Schema({
     title: String,
@@ -82,6 +83,22 @@ app.get("/posts/:postId", (req, res)=>{
         console.log(err);
     });
 });
+
+app.post("/delete", (req, res)=>{
+    
+    const itemId = req.body.delete;
+    
+    Post.findByIdAndRemove(itemId)
+    .then(()=>{
+        console.log("Deleted");
+        res.redirect("/")
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+});
+
+
 
 app.get("/about", (req, res)=>{
     res.render("about.ejs");
