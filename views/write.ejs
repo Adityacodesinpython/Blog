@@ -2,7 +2,7 @@
 
 
 <div id="content">
-    <form class="container my-5 p-5 bg-body-tertiary rounded-3 border" action="/write" method="POST">
+    <form class="container my-5 p-5 bg-body-tertiary rounded-3 border" action="/write/?valid=<%= userInfo %>" method="POST">
             <div class="mb-3">
                 <label for="blog-title text-body-emphasis" class="form-label">Title:</label>
                 <input class="form-control" name="blog-title" id="blog-title" placeholder="Enter title" required>
