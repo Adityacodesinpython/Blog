@@ -8,7 +8,7 @@ A fully functional & attractive blogging website with cool features
 - BootStrap
 - MongoDB, Mongoose.
 
-# Recent commit:
+# Recent commit (in order):
 - Added login & SignUp feature.
 - Added backend with MongoDB.
 - Ability to view blogs in a seperate page.
