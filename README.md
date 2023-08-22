@@ -9,11 +9,11 @@ A fully functional & attractive blogging website with cool features
 - MongoDB, Mongoose.
 
 # Recent commit (in order):
-1 - Fixed major bugs.
-2 - Added login & SignUp feature.
-3 - Added backend with MongoDB.
-4 - Ability to view blogs in a seperate page.
-5 - Deletion of a chosen blog.
+- Fixed major bugs.
+- Added login & SignUp feature.
+- Added backend with MongoDB.
+- Ability to view blogs in a seperate page.
+- Deletion of a chosen blog.
 
 # Acknowledgement
 - I'd like to thank my humble instructer Dr. Angela Yu for her passionate guidance throughout this project.
