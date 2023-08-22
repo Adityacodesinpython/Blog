@@ -18,9 +18,10 @@
         <div class="container">
             <header class="d-flex justify-content-center py-3">
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="/?valid=<%= userInfo %>" class="nav-link active">Home</a></li>
                     <li class="nav-item"><a href="/write/?valid=<%= userInfo %>" class="nav-link">Write a Blog</a></li>
-                    <li class="nav-item"><a href="/about" class="nav-link">About Me</a></li>
+                    <li class="nav-item"><a href="/about/?valid=<%= userInfo %>" class="nav-link">About Me</a></li>
+                    <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
                 </ul>
             </header>
         </div>

@@ -24,6 +24,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("user", userSchema);
 
 
+
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended:true }));
@@ -60,7 +61,12 @@ app.post("/register", (req, res)=>{
             userInfo.save()
             // var urlString = encodeURIComponent(userObject);
             // res.redirect('/?valid=' + urlString);
-            res.redirect("/login")
+
+            User.findOne({username:userName, password: userPassword})
+            .then((userInfo)=>{
+                var urlString = JSON.stringify(userInfo);
+                res.redirect('/?valid=' + urlString);
+            });   
         }
     })
 })
@@ -94,7 +100,7 @@ app.post("/login", (req,res)=>{
 })
 
 app.get("/", (req, res) => {
-
+    
     if(req.query.valid){
         var urlUserInfo = req.query.valid;
         // console.log(("getoutput: "+urlUserInfo))
@@ -122,6 +128,7 @@ app.get("/", (req, res) => {
         res.redirect("/register")
     }
 })
+
 
 
 app.get("/write", (req, res) => {
@@ -211,7 +218,12 @@ app.post("/delete", (req, res)=>{
 
 
 app.get("/about", (req, res)=>{
-    res.render("about.ejs");
+    var urlUserInfo = req.query.valid;
+    urlUserInfo = JSON.parse(urlUserInfo);
+
+    res.render("about.ejs",{
+        userInfo: JSON.stringify(urlUserInfo)
+    });
 })
 
 app.listen(port, () => {

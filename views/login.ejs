@@ -26,13 +26,13 @@
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="loginName" style="margin-left: 0px;">Username</label>
-                  <input type="text" id="loginName" name="username" class="form-control">
+                  <input type="text" id="loginName" name="username" class="form-control" required>
                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 115.2px;"></div><div class="form-notch-trailing"></div></div></div>
   
                 <!-- Password input -->
                 <div class="form-outline mb-4">   
                   <label class="form-label" for="loginPw" style="margin-left: 0px;">Password</label>
-                  <input type="password" id="loginPw" name="password" class="form-control">
+                  <input type="password" id="loginPw" name="password" class="form-control" required>
                   <% if(locals.check){ %>
                     <label style="color: red;">Please register first or check your credentials</label>
                 <% } %>
@@ -40,8 +40,9 @@
   
                 
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
-                
+                <div style="display: flex; justify-content: center;">
+                  <button type="submit"  class="btn btn-primary btn-block mb-4">Login</button>
+                </div>
 
               </form>
             </div>
