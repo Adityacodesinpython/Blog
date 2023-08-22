@@ -9,6 +9,7 @@ A fully functional & attractive blogging website with cool features
 - MongoDB, Mongoose.
 
 # Recent commit (in order):
+- Fixed major bugs.
 - Added login & SignUp feature.
 - Added backend with MongoDB.
 - Ability to view blogs in a seperate page.
