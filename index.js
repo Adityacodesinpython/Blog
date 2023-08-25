@@ -41,7 +41,7 @@ app.post("/register", (req, res)=>{
     .then((userObject)=>{
         if(userObject){
             // user already exists -> show error
-            console.log("u already exist")
+            console.log("u already exist");
             res.render("register.ejs", {
                 check:true
             })
@@ -107,7 +107,7 @@ app.get("/", (req, res) => {
 
         urlUserInfo = JSON.parse(urlUserInfo);
         
-        console.log("output:  "+ JSON.stringify(urlUserInfo))
+        console.log("output:  ")
         User.findOne({username:urlUserInfo.username, password:urlUserInfo.password})
         .then((userInfo)=>{
             // console.log(userInfo)
@@ -115,7 +115,7 @@ app.get("/", (req, res) => {
                 data:userInfo.posts.reverse(),
                 userInfo:JSON.stringify(urlUserInfo)
             });
-        console.log("user found")
+            console.log("user found")
         
             
             
