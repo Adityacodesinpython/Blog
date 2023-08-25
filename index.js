@@ -107,12 +107,12 @@ app.get("/", (req, res) => {
 
         urlUserInfo = JSON.parse(urlUserInfo);
         
-        console.log("output:  ")
+        console.log("output:  "+urlUserInfo)
         User.findOne({username:urlUserInfo.username, password:urlUserInfo.password})
-        .then((userInfo)=>{
+        .then((user_Info)=>{
             // console.log(userInfo)
             res.render("home.ejs", {
-                data:userInfo.posts.reverse(),
+                data:user_Info.posts.reverse(),
                 userInfo:JSON.stringify(urlUserInfo)
             });
             console.log("user found")
