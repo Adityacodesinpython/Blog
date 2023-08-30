@@ -59,14 +59,9 @@ app.post("/register", (req, res)=>{
             })
         
             userInfo.save()
-            // var urlString = encodeURIComponent(userObject);
-            // res.redirect('/?valid=' + urlString);
 
-            User.findOne({username:userName, password: userPassword})
-            .then((userInfo)=>{
-                var urlString = JSON.stringify(userInfo);
-                res.redirect('/?valid=' + urlString);
-            });   
+            var urlString = JSON.stringify(userInfo);
+            res.redirect('/?valid=' + urlString);   
         }
     })
 })
@@ -103,14 +98,13 @@ app.get("/", (req, res) => {
     
     if(req.query.valid){
         var urlUserInfo = req.query.valid;
-        // console.log(("getoutput: "+urlUserInfo))
+
+        console.log("output:  "+urlUserInfo)
 
         urlUserInfo = JSON.parse(urlUserInfo);
         
-        console.log("output:  "+urlUserInfo)
         User.findOne({username:urlUserInfo.username, password:urlUserInfo.password})
         .then((user_Info)=>{
-            // console.log(userInfo)
             res.render("home.ejs", {
                 data:user_Info.posts.reverse(),
                 userInfo:JSON.stringify(urlUserInfo)
@@ -137,7 +131,6 @@ app.get("/write", (req, res) => {
     // urlUserInfo = JSON.parse(urlUserInfo);
     
 
-    // console.log(urlUserInfo.username)
     res.render("write.ejs",{
         
         userInfo:urlUserInfo
@@ -150,8 +143,6 @@ app.post("/write", (req, res) => {
     var urlUserInfo = req.query.valid;
     urlUserInfo = JSON.parse(urlUserInfo);
 
-    // console.log("output i need rn:   "+urlUserInfo.username)
-
     let post_heading = req.body["blog-title"];
     let post_body = req.body["blog-post"];
 
@@ -159,6 +150,7 @@ app.post("/write", (req, res) => {
         title: post_heading,
         content: post_body
     });
+
     post.save()
 
     
@@ -183,7 +175,7 @@ app.get("/posts/:postId", (req, res)=>{
     .then((foundItem)=>{
         console.log("Found item");
         foundItem.posts.forEach(function(i){
-            if (i._id == req.params.postId){    //object ID issue
+            if (i._id == req.params.postId){   
                 res.render("post.ejs", {
                     data : i,
                     userInfo:JSON.stringify(urlUserInfo)
